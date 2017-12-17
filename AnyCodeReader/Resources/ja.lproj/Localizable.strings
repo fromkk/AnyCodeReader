@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  AnyCodeReader
+
+  Created by Kazuya Ueoka on 2017/12/16.
+  
+*/
+
+"AnyCodeReader.Error" =  "エラー";
+
+"AnyCodeReader.NotSupported" = "カメラの利用がサポートされていません。";
