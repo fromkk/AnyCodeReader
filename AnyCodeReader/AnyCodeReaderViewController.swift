@@ -48,8 +48,8 @@ import AVFoundation
         
         view.addSubview(previewView)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(_:)), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(_:)), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -156,7 +156,7 @@ extension AnyCodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
             previewView.isHidden = true
         }
         
-        let results: [AnyCodeReaderResult] = metadataObjects.flatMap { (metadataObject) -> AnyCodeReaderResult? in
+        let results: [AnyCodeReaderResult] = metadataObjects.compactMap { (metadataObject) -> AnyCodeReaderResult? in
             guard let metadataObject = metadataObject as? AVMetadataMachineReadableCodeObject,
                 let stringValue: String = metadataObject.stringValue else { return nil }
             
